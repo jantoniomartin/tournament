@@ -3,3 +3,27 @@ h1, h2 {
 	background: #9f2727;
 	padding: 0.5em;
 }
+
+#tournament_participants {
+	clear: both;
+}
+
+#tournament_participants ul li {
+	float: left;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	width: 24%;
+	height: 30px;
+	line-height: 30px;
+	white-space: nowrap;
+	margin-bottom: 5px;
+}
+
+#tournament_participants ul li a {
+	text-decoration: none;
+}
+
+#tournament_participants ul li img {
+	vertical-align: middle;
+}
