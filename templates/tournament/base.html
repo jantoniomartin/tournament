@@ -1,0 +1,24 @@
+{% extends 'site_base.html' %}
+
+{% load i18n %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ STATIC_URL }}tournament/css/tournament.css" />
+{% endblock %}
+
+{% block body_class %}tournament{% endblock %}
+{% block rtab_id %}id="tournament_tab"{% endblock %}
+
+{% block subnav %}{% endblock %}
+
+{% block body %}
+
+<div id="left_column">
+	{% block left_column %}{% endblock %}
+</div>
+
+<div id="right_column">
+	{% block right_column %}{% endblock %}
+</div>
+
+{% endblock %}

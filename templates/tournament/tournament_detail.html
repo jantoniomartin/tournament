@@ -1,0 +1,78 @@
+{% extends 'tournament/base.html' %}
+
+{% load i18n %}
+{% load avatar_tags %}
+
+{% block head_title %}{{ tournament.title }}{% endblock %}
+
+
+{% block left_column %}
+
+<h1>{{ tournament.title }}</h1>
+
+<div id="tournament_description">
+{{ tournament.description|safe|linebreaks }}
+</div>
+
+<h2>{% trans "Prizes" %}</h2>
+
+<div id="tournament_prize">
+{{ tournament.prize|safe|linebreaks }}
+</div>
+
+<h2>{% trans "Rules" %}</h2>
+<div id="tournament_rules">
+<p>{% blocktrans %}Registration in the tournament implies the acceptance of its rules, available in the link below. Before registering, be sure to read these rules carefully. If you have any doubts, you can use the forum to resolve them.{% endblocktrans %}</p>
+
+<p>{% blocktrans %}The organization reserves the right to make changes in the tournament system at any time.{% endblocktrans %}</p>
+
+<p><a href="{{ tournament.rules }}">{% trans "Tournament rules" %}</a></p>
+
+</div>
+
+<h2>{% trans "Registration" %}</h2>
+<div id="tournament_registration">
+{% if tournament.admission_open %}
+
+<p>{% blocktrans with tournament.deadline as deadline %}Admission to the tournament is open until {{ deadline }}.{% endblocktrans %}</p>
+
+<p>{% blocktrans %}By clicking the following link you will register in the tournament and you accept the tournament rules. Please, keep in mind that registration cannot be undone.{% endblocktrans %}</p>
+
+<p><a href="{% url register-participant tournament.slug %}">{% blocktrans %}Register me in the tournament.{% endblocktrans %}</a></p>
+
+
+{% else %}
+<p>{% blocktrans %}Admission to the tournament is closed.{% endblocktrans %}
+{% endif %}
+</div>
+
+<h2>{% trans "Participants" %}</h2>
+<div id="tournament_participants">
+<ul>
+{% for p in tournament.participant_set.all %}
+	<li><a href="{% url profile_detail p.user.username %}">{% avatar p.user 24 %} {{ p }}</a></li>
+{% endfor %}
+</ul>
+</div>
+
+
+{% endblock %}
+
+{% block right_column %}
+
+<div id="sponsors">
+<h2>{% blocktrans %}Sponsors{% endblocktrans %}</h2>
+
+<p>{% blocktrans %}This tournament is possible thanks to the help of our sponsors.{% endblocktrans %}
+
+{% for sponsor in tournament.sponsors.all %}
+<div class="sponsor">
+<a href="{{ sponsor.url}}" title="{{ sponsor.motto }}"><img src="{{ MEDIA_URL }}banners/{{ sponsor.banner_filename }}" alt="{{ sponsor.motto }}"/></a></p>
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
+
+

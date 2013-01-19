@@ -1,0 +1,11 @@
+{% extends 'tournament/base.html' %}
+
+{% load i18n %}
+
+{% block head_title %}{{ tournament.title }}{% endblock %}
+
+
+{% block left_column %}
+<p>{{ message }}</p>
+<p><a href="{% url tournament-detail tournament.slug %}">{% trans "Return to the tournament." %}</a></p>
+{% endblock %}
