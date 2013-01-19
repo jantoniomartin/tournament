@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-19 19:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:17
+msgid "slug"
+msgstr ""
+
+#: models.py:18
+msgid "created on"
+msgstr "creado el"
+
+#: models.py:19
+msgid "registration deadline"
+msgstr "plazo de inscripción"
+
+#: models.py:20
+msgid "admission is open"
+msgstr "la inscripción está abierta"
+
+#: models.py:21
+msgid "automatically accept participants"
+msgstr "aceptar participantes automáticamente"
+
+#: models.py:22
+msgid "minimum users"
+msgstr "usuarios mínimos"
+
+#: models.py:23
+msgid "title"
+msgstr "título"
+
+#: models.py:24
+msgid "description"
+msgstr "descripción"
+
+#: models.py:25
+msgid "prize"
+msgstr "premio"
+
+#: models.py:26
+msgid "rules"
+msgstr "reglas"
+
+#: models.py:30
+msgid "tournament"
+msgstr "torneo"
+
+#: models.py:31
+msgid "tournaments"
+msgstr "torneos"
+
+#: models.py:50
+msgid "name"
+msgstr "nombre"
+
+#: models.py:51
+msgid "motto"
+msgstr "lema"
+
+#: models.py:52
+msgid "banner"
+msgstr ""
+
+#: models.py:56
+msgid "sponsor"
+msgstr "patrocinador"
+
+#: models.py:57
+msgid "sponsors"
+msgstr "patrocinadores"
+
+#: models.py:70
+msgid "joined_on"
+msgstr ""
+
+#: models.py:71
+msgid "accepted"
+msgstr "aceptado"
+
+#: models.py:72
+msgid "eliminated"
+msgstr "eliminado"
+
+#: models.py:75
+msgid "participant"
+msgstr "participante"
+
+#: models.py:76
+msgid "participants"
+msgstr "participantes"
+
+#: views.py:33
+msgid "You have been registered successfully."
+msgstr "Te has registrado correctamente."
+
+#: views.py:35
+msgid "You are already registered in this tournament."
+msgstr "Ya estabas registrado en este torneo."
+
+#: templates/tournament/register.html:10
+msgid "Return to the tournament."
+msgstr "Volver al torneo."
+
+#: templates/tournament/tournament_detail.html:17
+msgid "Prizes"
+msgstr "Premios"
+
+#: templates/tournament/tournament_detail.html:23
+msgid "Rules"
+msgstr "Reglas"
+
+#: templates/tournament/tournament_detail.html:25
+msgid ""
+"Registration in the tournament implies the acceptance of its rules, "
+"available in the link below. Before registering, be sure to read these rules "
+"carefully. If you have any doubts, you can use the forum to resolve them."
+msgstr ""
+"La inscripción en el torneo implica la aceptación de sus reglas, "
+"disponibles en el enlace siguiente. Antes de registrarte, asegúrate de leer estas reglas "
+"cuidadosamente. Si tienes cualquier duda, puedes usar el foro para resolverla."
+
+#: templates/tournament/tournament_detail.html:27
+msgid ""
+"The organization reserves the right to make changes in the tournament system "
+"at any time."
+msgstr ""
+"La organización se reserva el derecho de hacer cambios en el sistema del torneo "
+"en cualquier momento."
+
+#: templates/tournament/tournament_detail.html:29
+msgid "Tournament rules"
+msgstr "Reglas del torneo"
+
+#: templates/tournament/tournament_detail.html:33
+msgid "Registration"
+msgstr "Inscripción"
+
+#: templates/tournament/tournament_detail.html:37
+#, python-format
+msgid "Admission to the tournament is open until %(deadline)s."
+msgstr "La inscripción en el torneo está abierta hasta %(deadline)s."
+
+#: templates/tournament/tournament_detail.html:39
+msgid ""
+"By clicking the following link you will register in the tournament and you "
+"accept the tournament rules. Please, keep in mind that registration cannot "
+"be undone."
+msgstr ""
+"Pulsando el siguiente enlace te inscribirás en el torneo y aceptas las reglas "
+"del mismo. Por favor, ten en cuenta que la inscripción no se puede deshacer."
+
+#: templates/tournament/tournament_detail.html:41
+msgid "Register me in the tournament."
+msgstr "Regístrame en el torneo."
+
+#: templates/tournament/tournament_detail.html:45
+msgid "Admission to the tournament is closed."
+msgstr "La inscripción al torneo está cerrada."
+
+#: templates/tournament/tournament_detail.html:49
+msgid "Participants"
+msgstr "Participantes"
+
+#: templates/tournament/tournament_detail.html:64
+msgid "Sponsors"
+msgstr "Patrocinadores"
+
+#: templates/tournament/tournament_detail.html:66
+msgid "This tournament is possible thanks to the help of our sponsors."
+msgstr "Este torneo es posible gracias a la ayuda de nuestros patrocinadores."
