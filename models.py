@@ -236,7 +236,7 @@ class TournamentGame(machiavelli.Game):
 			self.private = False
 			config = machiavelli.Configuration(game=self)
 			config.finances = s.configuration.finances
-			config.assassination = s.configuration.assassination
+			config.assassination = s.configuration.assassinations
 			config.excommunication = s.configuration.excommunication
 			config.special_units = s.configuration.special_units
 			config.lenders = s.configuration.lenders
