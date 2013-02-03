@@ -234,19 +234,26 @@ class TournamentGame(machiavelli.Game):
 			self.fast = False
 			self.uses_karma = False
 			self.private = False
-			config = machiavelli.Configuration(game=self)
-			config.finances = s.configuration.finances
-			config.assassination = s.configuration.assassinations
-			config.excommunication = s.configuration.excommunication
-			config.special_units = s.configuration.special_units
-			config.lenders = s.configuration.lenders
-			config.unbalanced_loans = s.configuration.unbalanced_loans
-			config.conquering = s.configuration.conquering
-			config.famine = s.configuration.famine
-			config.plague = s.configuration.plague
-			config.storms = s.configuration.storms
-			config.strategic = s.configuration.strategic
-			config.press = s.configuration.press
-			config.save()
 		super(TournamentGame, self).save(*args, **kwargs)
 
+def configure_game(sender, instance, created=False, **kwargs):
+	"""
+	Creates a Configuration object for the new game
+	"""
+	if created:
+		config = machiavelli.Configuration(game=instance)
+		config.finances = s.configuration.finances
+		config.assassination = s.configuration.assassinations
+		config.excommunication = s.configuration.excommunication
+		config.special_units = s.configuration.special_units
+		config.lenders = s.configuration.lenders
+		config.unbalanced_loans = s.configuration.unbalanced_loans
+		config.conquering = s.configuration.conquering
+		config.famine = s.configuration.famine
+		config.plague = s.configuration.plague
+		config.storms = s.configuration.storms
+		config.strategic = s.configuration.strategic
+		config.press = s.configuration.press
+		config.save()
+
+models.signals.post_save.connect(configure_game, sender=TournamentGame)
