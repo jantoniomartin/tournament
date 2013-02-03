@@ -241,6 +241,7 @@ def configure_game(sender, instance, created=False, **kwargs):
 	Creates a Configuration object for the new game
 	"""
 	if created:
+		s = instance.stage
 		config = machiavelli.Configuration(game=instance)
 		config.finances = s.configuration.finances
 		config.assassination = s.configuration.assassinations
