@@ -1,0 +1,66 @@
+{% extends "tournament/base.html" %}
+
+{% load i18n %}
+{% load machiavelli_tags %}
+
+{% block head_title %}
+{% blocktrans with tournament.title as title %}Finished games in {{title}}{% endblocktrans %}
+{% endblock %}
+
+{% block left_column %}
+<h1>{% blocktrans with tournament.title as title %}Finished games in {{title}}{% endblocktrans %}</h1>
+
+{% for game in game_list %}
+<div class="game_info">
+<h2><span><a href="{{ game.get_absolute_url }}">{{ game.title }}</a></span></h2>
+<div class="map">
+<img src="{{ game.thumbnail_url }}" />
+</div>
+{% if game.started and game.finished %}
+<div class="time">
+{% blocktrans with game.finished|date:"SHORT_DATE_FORMAT" as finished and game.finished|timeuntil:game.started as time %}
+Finished on {{ finished }} after {{ time }}.{% endblocktrans %}
+</div>
+{% endif %}
+<dl>
+<dt>{% trans "Scenario" %}</dt><dd><a href="{% url scenario_detail game.scenario.name %}">{{ game.scenario.title }}</a></dd>
+<dt>{% trans "Cities to win" %}</dt><dd>{{ game.cities_to_win }}</dd>
+<dt>{% trans "Players" %}</dt>
+<dd>
+	<ul>
+	{% for s in game.score_set.all %}
+		<li><a href="{% url profile_detail username=s.user.username %}">{{ s.user.username }}</a> ({{ s.points }})</li>
+	{% endfor %}
+	</ul>
+</dd>
+<dt>{% trans "Winner" %}</dt>
+{% for w in game.winners_qs %}
+<dd><a href="{% url profile_detail username=w.user.username %}">{{ w.user }}</a></dd>
+{% endfor %}
+</dl>
+<ul class="section_menu">
+	<li>{% trans "Version" %}: {{ game.version }}</li>
+	<li>{{ game.comments_count }} {% trans "comments" %}</li>
+	<li>{% rule_icons game.configuration %}</li>
+	<li><a href="{% url show-game game.slug %}">{% trans "View scores" %}</a></li>
+</ul>
+</div>
+{% endfor %}
+
+<div class="pagination">
+	<span class="step-links">
+		{% if page_obj.has_previous %}
+			<a href="?page={{ page_obj.previous_page_number }}">&lt;&lt;</a>
+		{% endif %}
+		
+		<span class="current">
+			{% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}.
+		</span>
+
+		{% if page_obj.has_next %}
+			<a href="?page={{ page_obj.next_page_number }}">&gt;&gt;</a>
+		{% endif %}
+	</span>
+</div>
+<p><a href="{% url tournament-detail tournament.slug %}">{% trans "Return to tournament" %}</a></p>
+{% endblock %}

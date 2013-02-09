@@ -50,7 +50,7 @@
 <div id="tournament_participants">
 <ul>
 {% for p in tournament.participant_set.all %}
-	<li><a href="{% url profile_detail p.user.username %}">{% avatar p.user 24 %} {{ p }}</a></li>
+	<li {% if p.eliminated %}class="eliminated"{% endif %}><a href="{% url profile_detail p.user.username %}">{% avatar p.user 24 %} {{ p }}</a></li>
 {% endfor %}
 </ul>
 </div>
@@ -60,17 +60,18 @@
 
 {% block right_column %}
 
-<div id="sponsors">
-<h2>{% blocktrans %}Sponsors{% endblocktrans %}</h2>
 
-<p>{% blocktrans %}This tournament is possible thanks to the help of our sponsors.{% endblocktrans %}
+<div>
+<h2>{% blocktrans %}Current stage{% endblocktrans %}</h2>
+{% if current_stage %}
+	<p>{% blocktrans with current_stage.number as number %}The stage "{{number}}" is being played.{% endblocktrans %}</p>
+{% else %}
+	<p>{% blocktrans %}The tournament is not being played.{% endblocktrans %}</p>
+{% endif %}
 
-{% for sponsor in tournament.sponsors.all %}
-<div class="sponsor">
-<a href="{{ sponsor.url}}" title="{{ sponsor.motto }}"><img src="{{ MEDIA_URL }}banners/{{ sponsor.banner_filename }}" alt="{{ sponsor.motto }}"/></a></p>
-</div>
-{% endfor %}
-
+<h2>{% blocktrans %}Tournament games{% endblocktrans %}</h2>
+<p><a href="{% url tournament-active-games tournament.slug %}">{% trans "Active games" %}</a></p>
+<p><a href="{% url tournament-finished-games tournament.slug %}">{% trans "Finished games" %}</a></p>
 </div>
 
 {% endblock %}

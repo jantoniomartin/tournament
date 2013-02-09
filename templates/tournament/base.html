@@ -18,6 +18,18 @@
 </div>
 
 <div id="right_column">
+<div id="sponsors">
+<h2>{% blocktrans %}Sponsors{% endblocktrans %}</h2>
+
+<p>{% blocktrans %}This tournament is possible thanks to the help of our sponsors.{% endblocktrans %}
+
+{% for sponsor in tournament.sponsors.all %}
+<div class="sponsor">
+<a href="{{ sponsor.url}}" title="{{ sponsor.motto }}"><img src="{{ MEDIA_URL }}banners/{{ sponsor.banner_filename }}" alt="{{ sponsor.motto }}"/></a></p>
+</div>
+{% endfor %}
+
+</div>
 	{% block right_column %}{% endblock %}
 </div>
 
