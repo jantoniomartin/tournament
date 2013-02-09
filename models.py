@@ -235,7 +235,12 @@ class TournamentGame(machiavelli.Game):
 			self.uses_karma = False
 			self.private = False
 		super(TournamentGame, self).save(*args, **kwargs)
-
+	
+	def check_revolution(self):
+		""" Override machiavelli.Game.check_revolution. Revolutions are not applied in
+		tournament games. """
+		return False
+	
 def configure_game(sender, instance, created=False, **kwargs):
 	"""
 	Creates a Configuration object for the new game
