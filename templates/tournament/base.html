@@ -6,18 +6,11 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}tournament/css/tournament.css" />
 {% endblock %}
 
-{% block body_class %}tournament{% endblock %}
-{% block rtab_id %}id="tournament_tab"{% endblock %}
-
 {% block subnav %}{% endblock %}
 
-{% block body %}
+{% block main_content %}{% endblock %}
 
-<div id="left_column">
-	{% block left_column %}{% endblock %}
-</div>
-
-<div id="right_column">
+{% block sidebar %}
 <div id="sponsors">
 <h2>{% blocktrans %}Sponsors{% endblocktrans %}</h2>
 
@@ -30,7 +23,8 @@
 {% endfor %}
 
 </div>
-	{% block right_column %}{% endblock %}
-</div>
+
+{% block extra_sidebar %}{% endblock %}
+
 
 {% endblock %}

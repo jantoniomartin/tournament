@@ -7,7 +7,7 @@
 {% blocktrans with tournament.title as title %}Finished games in {{title}}{% endblocktrans %}
 {% endblock %}
 
-{% block left_column %}
+{% block main_content %}
 <h1>{% blocktrans with tournament.title as title %}Finished games in {{title}}{% endblocktrans %}</h1>
 
 {% for game in game_list %}
