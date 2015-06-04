@@ -38,7 +38,7 @@
 
 <p>{% blocktrans %}By clicking the following link you will register in the tournament and you accept the tournament rules. Please, keep in mind that registration cannot be undone.{% endblocktrans %}</p>
 
-<p><a href="{% url register-participant tournament.slug %}">{% blocktrans %}Register me in the tournament.{% endblocktrans %}</a></p>
+<p><a href="{% url "register-participant" tournament.slug %}">{% blocktrans %}Register me in the tournament.{% endblocktrans %}</a></p>
 
 
 {% else %}
@@ -50,7 +50,7 @@
 <div id="tournament_participants">
 <ul>
 {% for p in tournament.participant_set.all %}
-	<li {% if p.eliminated %}class="eliminated"{% endif %}><a href="{% url profile_detail p.user.username %}">{% avatar p.user 24 %} {{ p }}</a></li>
+	<li {% if p.eliminated %}class="eliminated"{% endif %}><a href="{% url "profile_detail" p.user.username %}">{% avatar p.user 24 %} {{ p }}</a></li>
 {% endfor %}
 </ul>
 </div>
@@ -70,8 +70,8 @@
 {% endif %}
 
 <h2>{% blocktrans %}Tournament games{% endblocktrans %}</h2>
-<p><a href="{% url tournament-active-games tournament.slug %}">{% trans "Active games" %}</a></p>
-<p><a href="{% url tournament-finished-games tournament.slug %}">{% trans "Finished games" %}</a></p>
+<p><a href="{% url "tournament-active-games" tournament.slug %}">{% trans "Active games" %}</a></p>
+<p><a href="{% url "tournament-finished-games" tournament.slug %}">{% trans "Finished games" %}</a></p>
 </div>
 
 {% endblock %}
