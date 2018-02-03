@@ -28,7 +28,7 @@ class Tournament(models.Model):
 	description = models.TextField(_("description"))
 	prize = models.TextField(_("prize"))
 	rules = models.URLField(_("rules"))
-	sponsors = models.ManyToManyField('Sponsor', null=True, blank=True)
+	sponsors = models.ManyToManyField('Sponsor', blank=True)
 	created_by = models.ForeignKey(User)
 
 	class Meta:
