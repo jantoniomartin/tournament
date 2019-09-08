@@ -26,7 +26,7 @@ class LatestTournamentDetailView(TournamentDetailView):
 		try:
 			current_stage = tournament.Stage.objects.get(tournament=t, started_on__isnull=False,
 				finished_on__isnull=True)
-		except ObjectDoesNotExist, MultipleObjectsReturned:
+		except ObjectDoesNotExist as MultipleObjectsReturned:
 			current_stage = tournament.Stage.objects.none()
 		context.update({"current_stage": current_stage,})
 		

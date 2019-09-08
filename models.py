@@ -15,9 +15,7 @@ from transmeta import TransMeta
 import condottieri_scenarios.models as scenarios
 import machiavelli.models as machiavelli
 
-class Tournament(models.Model):
-	__metaclass__ = TransMeta
-	
+class Tournament(models.Model, metaclass=TransMeta):
 	slug = models.SlugField(_("slug"), max_length=20, unique=True)
 	created_on = models.DateTimeField(_("created on"), auto_now_add=True)
 	deadline = models.DateTimeField(_("registration deadline"))
@@ -82,7 +80,7 @@ class Participant(models.Model):
 		unique_together = (("user", "tournament"),)
 
 	def __unicode__(self):
-		return unicode(self.user)
+		return str(self.user)
 
 	def save(self, *args, **kwargs):
 		if not self.pk:
@@ -170,7 +168,7 @@ class Configuration(models.Model):
 		for f in self._meta.fields:
 			if isinstance(f, models.BooleanField):
 				if f.value_from_object(self):
-					rules.append(unicode(f.verbose_name))
+					rules.append(str(f.verbose_name))
 		return rules
 
 	def _get_gossip(self):
@@ -210,7 +208,7 @@ class Slot(models.Model):
 		unique_together = (("user", "stage"),)
 
 	def __unicode__(self):
-		return unicode(self.user)
+		return str(self.user)
 
 class TournamentGame(machiavelli.Game):
 	stage = models.ForeignKey(Stage)
