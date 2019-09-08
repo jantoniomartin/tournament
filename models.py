@@ -35,7 +35,7 @@ class Tournament(models.Model, metaclass=TransMeta):
 		ordering = ["created_on",]
 		translate = ('title', 'description', 'prize', 'rules')
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.slug
 
 	def extend_deadline(self):
@@ -59,7 +59,7 @@ class Sponsor(models.Model):
 		verbose_name = _("sponsor")
 		verbose_name_plural = _("sponsors")
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
 	def _get_banner_filename(self):
@@ -79,7 +79,7 @@ class Participant(models.Model):
 		verbose_name_plural = _("participants")
 		unique_together = (("user", "tournament"),)
 
-	def __unicode__(self):
+	def __str__(self):
 		return str(self.user)
 
 	def save(self, *args, **kwargs):
@@ -109,7 +109,7 @@ class Stage(models.Model):
 		verbose_name_plural = _("stages")
 		unique_together = (("tournament", "number"),)
 
-	def __unicode__(self):
+	def __str__(self):
 		return _("Stage %s in %s") % (self.number, self.tournament.title)
 
 	def create_slots(self):
@@ -160,7 +160,7 @@ class Configuration(models.Model):
 		help_text=_('each player sees only what happens near his borders'))
 	press = models.PositiveIntegerField(_('press'), choices=machiavelli.PRESS_TYPES, default=0)
 
-	def __unicode__(self):
+	def __str__(self):
 		return _("Configuration for %s") % self.stage
 
 	def get_enabled_rules(self):
@@ -207,7 +207,7 @@ class Slot(models.Model):
 		verbose_name_plural = _("slots")
 		unique_together = (("user", "stage"),)
 
-	def __unicode__(self):
+	def __str__(self):
 		return str(self.user)
 
 class TournamentGame(machiavelli.Game):
