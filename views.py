@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.shortcuts import get_object_or_404
-from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View, TemplateView
 from django.views.generic.detail import DetailView
