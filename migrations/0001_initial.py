@@ -86,7 +86,7 @@ class Migration(migrations.Migration):
                 ('time_limit', models.PositiveIntegerField(default=86400, help_text='seconds available to play a turn', verbose_name='time limit')),
                 ('cities_to_win', models.PositiveIntegerField(default=15, help_text='cities that must be controlled to win a game', verbose_name='cities to win')),
                 ('years_limit', models.PositiveIntegerField(default=0, help_text='the game finish after these years', verbose_name='years limit')),
-                ('scenario', models.ForeignKey(to='condottieri_scenarios.Scenario')),
+                ('scenario', models.ForeignKey(to='condottieri_scenarios.Scenario', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'stage',
@@ -119,7 +119,7 @@ class Migration(migrations.Migration):
                 ('rules_es', models.URLField(null=True, verbose_name='rules', blank=True)),
                 ('rules_ca', models.URLField(null=True, verbose_name='rules', blank=True)),
                 ('rules_de', models.URLField(null=True, verbose_name='rules', blank=True)),
-                ('created_by', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('created_by', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
                 ('sponsors', models.ManyToManyField(to='tournament.Sponsor', blank=True)),
             ],
             options={
@@ -131,8 +131,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TournamentGame',
             fields=[
-                ('game_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='machiavelli.Game')),
-                ('stage', models.ForeignKey(to='tournament.Stage')),
+                ('game_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='machiavelli.Game', on_delete=models.CASCADE)),
+                ('stage', models.ForeignKey(to='tournament.Stage', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'tournament game',
@@ -143,7 +143,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='stage',
             name='tournament',
-            field=models.ForeignKey(to='tournament.Tournament'),
+            field=models.ForeignKey(to='tournament.Tournament', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='stage',
@@ -153,27 +153,27 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='slot',
             name='stage',
-            field=models.ForeignKey(to='tournament.Stage'),
+            field=models.ForeignKey(to='tournament.Stage', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='slot',
             name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='participant',
             name='tournament',
-            field=models.ForeignKey(to='tournament.Tournament'),
+            field=models.ForeignKey(to='tournament.Tournament', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='participant',
             name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='configuration',
             name='stage',
-            field=models.OneToOneField(editable=False, to='tournament.Stage', verbose_name='stage'),
+            field=models.OneToOneField(editable=False, to='tournament.Stage', verbose_name='stage', on_delete=models.CASCADE),
         ),
         migrations.AlterUniqueTogether(
             name='stage',

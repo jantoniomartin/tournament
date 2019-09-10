@@ -27,7 +27,7 @@ class Tournament(models.Model, metaclass=TransMeta):
 	prize = models.TextField(_("prize"))
 	rules = models.URLField(_("rules"))
 	sponsors = models.ManyToManyField('Sponsor', blank=True)
-	created_by = models.ForeignKey(User)
+	created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	class Meta:
 		verbose_name = _("tournament")
@@ -68,8 +68,8 @@ class Sponsor(models.Model):
 	banner_filename = property(_get_banner_filename)
 
 class Participant(models.Model):
-	user = models.ForeignKey(User)
-	tournament = models.ForeignKey(Tournament)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
 	joined_on = models.DateTimeField(_("joined_on"), auto_now_add=True)
 	accepted = models.BooleanField(_("accepted"), default=False)
 	eliminated = models.BooleanField(_("eliminated"), default=False)
@@ -89,13 +89,13 @@ class Participant(models.Model):
 		super(Participant, self).save(*args, **kwargs)
 
 class Stage(models.Model):
-	tournament = models.ForeignKey(Tournament)
+	tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
 	number = models.PositiveIntegerField(_("number"), default=0)
 	size = models.PositiveIntegerField(_("size"), default=0)
 	number_of_games = models.PositiveIntegerField(_("number of games"), default=0)
 	started_on = models.DateTimeField(_("started on"), null=True, blank=True)
 	finished_on = models.DateTimeField(_("finished on"), null=True, blank=True)	
-	scenario = models.ForeignKey(scenarios.Scenario)
+	scenario = models.ForeignKey(scenarios.Scenario, on_delete=models.CASCADE)
 	time_limit = models.PositiveIntegerField(_("time limit"), default=24*60*60,
 		help_text = _("seconds available to play a turn"))
 	cities_to_win = models.PositiveIntegerField(_("cities to win"), default=15,
@@ -137,7 +137,7 @@ class Configuration(models.Model):
 	""" Defines the common configuration options for each game in a stage. 
 	"""
 
-	stage = models.OneToOneField(Stage, verbose_name=_('stage'), editable=False)
+	stage = models.OneToOneField(Stage, verbose_name=_('stage'), editable=False, on_delete=models.CASCADE)
 	finances = models.BooleanField(_('finances'), default=False)
 	assassinations = models.BooleanField(_('assassinations'), default=False,
 					help_text=_('will enable Finances'))
@@ -198,8 +198,8 @@ class Configuration(models.Model):
 class Slot(models.Model):
 	""" A Slot defines the participation of a User in a Stage.
 	"""
-	user = models.ForeignKey(User)
-	stage = models.ForeignKey(Stage)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	stage = models.ForeignKey(Stage, on_delete=models.CASCADE)
 	score = models.PositiveIntegerField(_("score"), blank=True, null=True)
 
 	class Meta:
@@ -211,7 +211,7 @@ class Slot(models.Model):
 		return str(self.user)
 
 class TournamentGame(machiavelli.Game):
-	stage = models.ForeignKey(Stage)
+	stage = models.ForeignKey(Stage, on_delete=models.CASCADE)
 
 	class Meta:
 		verbose_name = _("tournament game")
